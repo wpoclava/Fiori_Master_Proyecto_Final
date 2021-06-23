@@ -1,0 +1,25 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Run ProyectoFinal-HTML5Module",
+      "type": "node",
+      "request": "launch",
+      "program": "${workspaceFolder}/proyectofinal-approuter/node_modules/@sap/html5-repo-mock/index.js",
+      "args": [
+        "--standalone",
+        "/logaligroupHTML5Module/index.html",
+        "--ui5",
+        "{\"version\":\".\"}"
+      ],
+      "cwd": "${workspaceFolder}/HTML5Module",
+      "env": {
+        "PORT": "6004",
+        "MOCK_LOOKUP_DIRS": "[\"webapp\"]",
+        "run.config": "{\"handlerId\":\"ui5_run_config_handler_id\",\"runnableId\":\"/home/user/projects/ProyectoFinal/HTML5Module\"}"
+      },
+      "envFile": "${workspaceFolder}/HTML5Module/.env3",
+      "preLaunchTask": "Build ProyectoFinal"
+    }
+  ]
+}

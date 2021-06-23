@@ -1,0 +1,62 @@
+_schema-version: "3.2"
+ID: ProyectoFinal
+version: 0.0.1
+modules:
+- name: proyectofinal-approuter
+  type: approuter.nodejs
+  path: proyectofinal-approuter
+  requires:
+  - name: ProyectoFinal_html_repo_runtime
+  - name: dest_ProyectoFinal
+  - name: conn_ProyectoFinal
+  parameters:
+    disk-quota: 256M
+    memory: 256M
+- name: ProyectoFinal_ui_deployer
+  type: com.sap.application.content
+  path: .
+  requires:
+  - name: ProyectoFinal_html_repo_host
+    parameters:
+      content-target: true
+  build-parameters:
+    build-result: resources
+    requires:
+    - artifacts:
+      - HTML5Module-content.zip
+      name: HTML5Module
+      target-path: resources/
+- name: HTML5Module
+  type: html5
+  path: HTML5Module
+  build-parameters:
+    builder: custom
+    commands:
+    - npm run build
+    supported-platforms: []
+resources:
+- name: ProyectoFinal_html_repo_runtime
+  type: org.cloudfoundry.managed-service
+  parameters:
+    service: html5-apps-repo
+    service-plan: app-runtime
+- name: ProyectoFinal_html_repo_host
+  type: org.cloudfoundry.managed-service
+  parameters:
+    service: html5-apps-repo
+    service-plan: app-host
+- name: conn_ProyectoFinal
+  type: org.cloudfoundry.managed-service
+  parameters:
+    service: connectivity
+    service-plan: lite
+- name: dest_ProyectoFinal
+  type: org.cloudfoundry.managed-service
+  parameters:
+    service: destination
+    service-plan: lite    
+build-parameters:
+  before-all:
+  - builder: custom
+    commands:
+    - npm install

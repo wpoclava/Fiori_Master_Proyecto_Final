@@ -1,0 +1,11 @@
+<mvc:View controllerName="logaligroup.ProyectoFinal.HTML5Module.controller.App" xmlns:mvc="sap.ui.core.mvc" displayBlock="true" xmlns="sap.m">
+	<Shell id="shell">
+		<App id="app">
+			<pages>
+				<Page id="page">
+					<content></content>
+				</Page>
+			</pages>
+		</App>
+	</Shell>
+</mvc:View>
